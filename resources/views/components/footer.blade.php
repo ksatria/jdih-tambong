@@ -1,7 +1,7 @@
-<div id="footer">
-    <div class="container">
-        <div>Website JDIH Desa Tambong | Prototype #1</div>
-        <div>Dikembangkan oleh Tim P2DT Desa Tambong Tahun 2022</div>
-        <div>Politeknik Negeri Banyuwangi</div>
-    </div>
+<div class="container">
+    <footer id="page-footer" class="border-top py-3 my-4 text-muted">
+        <div><small class="fw-semibold">Website JDIH Desa Tambong | Prototype #1</small></div>
+        <div><small>Dikembangkan oleh Tim P2DT Desa Tambong Tahun 2022</small></div>
+        <div><small>Politeknik Negeri Banyuwangi</small></div>
+    </footer>
 </div>

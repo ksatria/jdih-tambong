@@ -16,6 +16,8 @@ class Card extends Component
     public $tanggal;
     public $tahun;
     public $jenis;
+    public $jumlahDilihat;
+    public $jumlahDidownload;
 
     private $bulan = [
         "Januari", "Februari", "Maret",
@@ -37,6 +39,8 @@ class Card extends Component
         $this->tanggal = $this->formatTanggal($dokumen->tanggal_pengesahan);
         $this->tahun = date('Y', strtotime($dokumen->tanggal_pengesahan));
         $this->jenis = $dokumen->tipeDokumen->nama_tipe;
+        $this->jumlahDilihat = $dokumen->jumlah_lihat;
+        $this->jumlahDidownload = $dokumen->jumlah_download;
     }
 
     /**

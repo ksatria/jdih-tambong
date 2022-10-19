@@ -9,8 +9,10 @@ class DokumenController extends Controller
 {
     function index()
     {
-        $dokumenTerbaru = Dokumen::orderBy('tanggal_pengesahan', 'desc')->limit(10)->get();
-        // return $dokumenTerbaru;
+        $dokumenTerbaru = Dokumen::orderBy('tanggal_pengesahan', 'desc')
+            ->limit(10)
+            ->get();
+
         return view('beranda', ["kumpulanDokumen" => $dokumenTerbaru]);
     }
 
