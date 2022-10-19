@@ -34,6 +34,4 @@ Route::controller(DokumenController::class)->group(function () {
      * Route ke fitur pencarian dokumen
      */
     Route::get('/cari', 'cariDokumen')->name('cari.default');
-    // Route::get('/cari?q={keyword?}', 'cariDokumen')->name('cari.keyword');
-    // Route::get('/cari/{keyword?}', 'cariDokumen')->name('cari.keyword');
 });

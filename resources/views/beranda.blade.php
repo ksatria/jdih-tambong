@@ -8,9 +8,7 @@
         Kabupaten Banyuwangi,
         Provinsi Jawa Timur</p>
 
-    <div id="form-pencarian">
-        <x-form-pencarian />
-    </div>
+    <x-form-pencarian />
 
     <section id="dokumen-terbaru">
         <h1 class="section-title fs-4">Dokumen Terbaru</h1>
@@ -19,10 +17,6 @@
             <p><em>Belum ada dokumen yang dipublikasi</em></p>
         @else
             @foreach ($kumpulanDokumen as $dokumen)
-                {{-- {{ $dokumen }}
-                <br />
-                {{ $dokumen->tipeDokumen->nama_tipe }}
-                <br /> --}}
                 <x-dokumen.card :dokumen="$dokumen" />
             @endforeach
         @endif
