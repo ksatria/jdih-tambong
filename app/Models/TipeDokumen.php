@@ -29,4 +29,12 @@ class TipeDokumen extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    /**
+     * Setiap tipe dokumen dimungkinkan memiliki banyak dokumen
+     */
+    public function dokumen()
+    {
+        return $this->hasMany(Dokumen::class, 'id_tipe_dokumen');
+    }
 }

@@ -34,9 +34,35 @@ class Dokumen extends Model
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'tanggal_pengesahan' => 'date'
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['judul', 'nomor', 'id_tipe_dokumen', 'tanggal_pengesahan', 'kode_status', 'lokasi_file'];
+    protected $fillable = [
+        'judul',
+        'nomor',
+        'id_tipe_dokumen',
+        'tanggal_pengesahan',
+        'kode_status',
+        'lokasi_file'
+    ];
+
+    /**
+     * Setiap dokumen hanya mempunyai satu tipe dokumen
+     * sehingga setiap dokumen merupakan bagian dari suatu
+     * tipe dokumen
+     */
+    public function tipeDokumen()
+    {
+        return $this->belongsTo(TipeDokumen::class, 'id_tipe_dokumen');
+    }
 }
