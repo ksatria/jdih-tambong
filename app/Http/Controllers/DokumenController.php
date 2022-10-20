@@ -37,26 +37,36 @@ class DokumenController extends Controller
 
     function perdes($id = null, $title = null)
     {
+        if ($id !== null) return $this->viewDetailDokumen('Perdes', $id);
+
         return $this->viewJenisDokumen('Perdes', 'Peraturan Desa');
     }
 
     function perkades($id = null, $title = null)
     {
+        if ($id !== null) return $this->viewDetailDokumen('Perkades', $id);
+
         return $this->viewJenisDokumen('Perkades', 'Peraturan Kepala Desa');
     }
 
     function permakades($id = null, $title = null)
     {
+        if ($id !== null) return $this->viewDetailDokumen('Permakades', $id);
+
         return $this->viewJenisDokumen('Permakades', 'Peraturan Bersama Kepala Desa');
     }
 
     function keputusan($id = null, $title = null)
     {
+        if ($id !== null) return $this->viewDetailDokumen('SK Kades', $id);
+
         return $this->viewJenisDokumen('SK Kades', 'Surat Keputusan Kepala Desa');
     }
 
     function dokumenLain($id = null, $title = null)
     {
+        if ($id !== null) return $this->viewDetailDokumen('Lain', $id);
+
         return $this->viewJenisDokumen('Lain', 'Dokumen Hukum Lainnya');
     }
 
@@ -73,6 +83,32 @@ class DokumenController extends Controller
         ];
 
         return view('dokumen.semua', $data);
+    }
+
+    private function viewDetailDokumen($jenis, $id)
+    {
+        $dokumen = Dokumen::whereRelation('tipeDokumen', 'singkatan_tipe', $jenis)
+            ->find($id);
+
+        if ($dokumen === null) return view('page-not-found');
+
+        $tipe = $dokumen->tipeDokumen->nama_tipe;
+        $nomor = $dokumen->nomor;
+        $tahun = date('Y', strtotime($dokumen->tanggal_pengesahan));
+
+        $identitas = "{$tipe} Nomor {$nomor} Tahun {$tahun}";
+        $judul = $dokumen->judul;
+        $deskripsi = "{$identitas} Tentang {$judul}";
+
+        $data = [
+            "deskripsiHalaman" => $deskripsi,
+            "judulHalaman" => $identitas,
+            "identitas" => $identitas,
+            "judul" => $judul,
+            "dokumen" => $dokumen
+        ];
+
+        return view('dokumen.detail', $data);
     }
 
     function cariDokumen(Request $request)
