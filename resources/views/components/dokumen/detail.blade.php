@@ -28,7 +28,9 @@
         <tr>
             <td>Status</td>
             <td>:</td>
-            <td>{{ $status }}</td>
+            <td><span
+                    class="badge {{ $status == 'Berlaku' ? 'text-bg-success' : 'text-bg-danger' }}">{{ $status }}</span>
+            </td>
         </tr>
     </tbody>
 </table>
