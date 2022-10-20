@@ -32,7 +32,7 @@ class DokumenController extends Controller
             "kumpulanDokumen" => $dokumen
         ];
 
-        return view('dokumen', $data);
+        return view('dokumen.semua', $data);
     }
 
     function perdes($id = null, $title = null)
@@ -72,7 +72,7 @@ class DokumenController extends Controller
             "kumpulanDokumen" => $dokumen
         ];
 
-        return view('dokumen', $data);
+        return view('dokumen.semua', $data);
     }
 
     function cariDokumen(Request $request)
