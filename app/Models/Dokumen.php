@@ -57,12 +57,18 @@ class Dokumen extends Model
     ];
 
     /**
-     * Setiap dokumen hanya mempunyai satu tipe dokumen
-     * sehingga setiap dokumen merupakan bagian dari suatu
-     * tipe dokumen
+     * Setiap dokumen merupakan bagian dari suatu tipe dokumen
      */
     public function tipeDokumen()
     {
         return $this->belongsTo(TipeDokumen::class, 'id_tipe_dokumen');
+    }
+
+    /**
+     * Setiap dokumen mempunyai status keberlakuan
+     */
+    public function statusDokumen()
+    {
+        return $this->belongsTo(StatusDokumen::class, 'kode_status', 'kode_status');
     }
 }

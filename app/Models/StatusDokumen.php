@@ -43,4 +43,12 @@ class StatusDokumen extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * Masing-masing status dokumen dimungkinkan disandang oleh banyak dokumen
+     */
+    public function dokumen()
+    {
+        return $this->hasMany(Dokumen::class, 'kode_status', 'kode_status');
+    }
 }
