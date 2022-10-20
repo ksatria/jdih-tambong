@@ -1,4 +1,4 @@
-@extends('layouts.utama');
+@extends('layouts.utama')
 
 @section('meta.deskripsi', $deskripsiHalaman)
 @section('judul', $judulHalaman)
