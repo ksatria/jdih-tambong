@@ -112,6 +112,15 @@ class DokumenController extends Controller
     {
         $keyword = $request->input('q');
 
-        return view('pencarian', ["keyword" => $keyword]);
+        $hasilPencarian = Dokumen::where('judul', 'like', "%{$keyword}%")
+            ->orderBy('tanggal_pengesahan', 'desc')
+            ->paginate($this->JUMLAH_DOKUMEN_PER_HALAMAN);
+
+        $data = [
+            "keyword" => $keyword,
+            "hasil" => $hasilPencarian
+        ];
+
+        return view('pencarian', $data);
     }
 }
