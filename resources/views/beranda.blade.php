@@ -19,6 +19,10 @@
             @foreach ($kumpulanDokumen as $dokumen)
                 <x-dokumen.card :dokumen="$dokumen" />
             @endforeach
+
+            <p class="text-center">
+                <a href={{ route('dokumen') }} class="text-decoration-none">Lihat dokumen lainnya >>></a>
+            </p>
         @endif
     </section>
 @endsection
