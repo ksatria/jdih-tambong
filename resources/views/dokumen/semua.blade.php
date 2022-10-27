@@ -14,5 +14,10 @@
         @foreach ($kumpulanDokumen as $dokumen)
             <x-dokumen.card :dokumen="$dokumen" />
         @endforeach
+
+        {{ $kumpulanDokumen->links() }}
+
+        {{-- Kalau mau pakai desain milik sendiri --}}
+        {{-- {{ $kumpulanDokumen->links('tes-pagination') }} --}}
     @endif
 @endsection

@@ -20,11 +20,8 @@ class DokumenController extends Controller
 
     function semuaDokumen()
     {
-        /* --- TO DO --- */
-        // $pagination = Dokumen::orderBy('tanggal_pengesahan', 'desc')
-        //     ->paginate($this->JUMLAH_DOKUMEN_PER_HALAMAN);
-
-        $dokumen = Dokumen::orderBy('tanggal_pengesahan', 'desc')->get();
+        $dokumen = Dokumen::orderBy('tanggal_pengesahan', 'desc')
+            ->paginate($this->JUMLAH_DOKUMEN_PER_HALAMAN);
 
         $data = [
             "deskripsiHalaman" => "Kumpulan semua dokumen hukum di lingkungan Desa Tambong, Kabat, Banyuwangi, Jawa Timur",
@@ -74,7 +71,7 @@ class DokumenController extends Controller
     {
         $dokumen = Dokumen::whereRelation('tipeDokumen', 'singkatan_tipe', $singkatan)
             ->orderBy('tanggal_pengesahan', 'desc')
-            ->get();
+            ->paginate($this->JUMLAH_DOKUMEN_PER_HALAMAN);
 
         $data = [
             "deskripsiHalaman" => "Kumpulan {$kepanjangan} yang diterbitkan di lingkungan Desa Tambong, Kabat, Banyuwangi, Jawa Timur",
