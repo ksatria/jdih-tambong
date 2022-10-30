@@ -4,10 +4,12 @@ namespace App\View\Components\admin;
 
 use Illuminate\View\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class SideBarMenu extends Component
 {
     public $isSuperAdmin = false;
+    public $active = [];
 
     /**
      * Create a new component instance.
@@ -18,6 +20,9 @@ class SideBarMenu extends Component
     {
         $pengelola = Auth::user();
         $this->isSuperAdmin = ($pengelola->levelPengelola->level == 'Super admin');
+
+        $routeName = Route::currentRouteName();
+        $this->active[$routeName] = 'active';
     }
 
     /**
