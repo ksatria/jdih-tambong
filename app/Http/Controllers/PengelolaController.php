@@ -35,7 +35,7 @@ class PengelolaController extends Controller
     function login()
     {
         if (Auth::viaRemember())
-            return "Sudah login via remember";
+            return redirect('dashboard');
         else
             return view('admin.login');
     }
