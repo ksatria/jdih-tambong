@@ -43,4 +43,12 @@ class LevelPengelola extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * Setiap level pengelola mungkin digunakan oleh banyak pengelola
+     */
+    public function pengelola()
+    {
+        $this->hasMany(Pengelola::class, 'kode_level', 'kode_level');
+    }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DokumenController;
+use App\Http\Controllers\PengelolaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,14 @@ Route::controller(DokumenController::class)->group(function () {
      * Route ke fitur pencarian dokumen
      */
     Route::get('/cari', 'cariDokumen')->name('cari');
+});
+
+/**
+ * Route ke halaman-halaman untuk admin
+ */
+Route::controller(PengelolaController::class)->name('admin.')->group(function () {
+    Route::get('/pintu-masuk', 'login')->name('login');
+    Route::post('/login', 'prosesLogin')->name('login.proses');
+    Route::get('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/logout', 'logout')->name('logout');
 });

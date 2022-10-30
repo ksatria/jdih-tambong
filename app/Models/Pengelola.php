@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Pengelola extends Model
+class Pengelola extends Authenticatable
 {
     use HasFactory;
 
@@ -59,4 +60,33 @@ class Pengelola extends Model
      * @var array
      */
     protected $guarded = ['kode_level'];
+
+    /**
+     * Remember token field
+     */
+    protected $rememberTokenName = 'token_tersimpan';
+
+    /**
+     * Setiap pengelola mempunyai satu level pengelola
+     */
+    public function levelPengelola()
+    {
+        return $this->belongsTo(LevelPengelola::class, 'kode_level', 'kode_level');
+    }
+
+    /**
+     * Setiap pengelola bisa menyimpan banyak dokumen
+     */
+    public function penyimpanDokumen()
+    {
+        return $this->hasMany(Dokumen::class, 'username_penyimpan', 'username');
+    }
+
+    /**
+     * Setiap pengelola juga bisa mengubah banyak dokumen
+     */
+    public function pengubahDokumen()
+    {
+        return $this->hasMany(Dokumen::class, 'username_pengubah', 'username');
+    }
 }
