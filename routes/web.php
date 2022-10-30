@@ -43,6 +43,6 @@ Route::controller(DokumenController::class)->group(function () {
 Route::controller(PengelolaController::class)->name('admin.')->group(function () {
     Route::get('/pintu-masuk', 'login')->name('login');
     Route::post('/login', 'prosesLogin')->name('login.proses');
-    Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::get('/logout', 'logout')->name('logout');
+    Route::get('/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
 });
