@@ -20,7 +20,7 @@
         <div class="alert alert-warning">Belum ada dokumen yang disimpan</div>
     @else
         @foreach ($kumpulanDokumen as $dokumen)
-            <x-dokumen.card :dokumen="$dokumen" />
+            <x-admin.dokumen-card :dokumen="$dokumen" />
         @endforeach
 
         {{ $kumpulanDokumen->links() }}
