@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Pengelola;
+use App\Models\Dokumen;
+use App\Models\TipeDokumen;
+use App\Models\StatusDokumen;
 
 class PengelolaController extends Controller
 {
@@ -53,5 +55,16 @@ class PengelolaController extends Controller
     function dashboard()
     {
         return view('admin.dashboard');
+    }
+
+    function dokumen()
+    {
+        $dokumen = Dokumen::orderBy('tanggal_pengesahan', 'desc')->paginate(5);
+
+        $data = [
+            "kumpulanDokumen" => $dokumen
+        ];
+
+        return view('admin.dokumen.semua', $data);
     }
 }
