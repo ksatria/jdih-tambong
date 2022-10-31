@@ -1,5 +1,5 @@
 <div class="card mb-3">
-    <a href={{ $link }} class="card-body text-decoration-none">
+    <a href="{{ $link }}" class="card-body text-decoration-none">
         <div class="card-subtitle mb-2 text-muted">{{ $jenis }} Nomor {{ $nomor }} Tahun
             {{ $tahun }}</div>
         <h2 class="card-title fs-6">{{ $judul }}</h2>
