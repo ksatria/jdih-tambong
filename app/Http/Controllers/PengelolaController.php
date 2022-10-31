@@ -67,4 +67,44 @@ class PengelolaController extends Controller
 
         return view('admin.dokumen.semua', $data);
     }
+
+    function tambahDokumen()
+    {
+        $data = [
+            "judulHalaman" => "Tambah Dokumen",
+            "tipeDokumen" => TipeDokumen::all()
+        ];
+
+        return view('admin.dokumen.kelola', $data);
+    }
+
+    function prosesTambahDokumen(Request $request)
+    {
+        $validation = $request->validate([
+            'judul' => ['required', 'string'],
+            'nomor' => ['required'],
+            'jenis' => ['required'],
+            'tanggal' => ['required', 'date'],
+            'berkas' => ['nullable', 'file']
+        ]);
+
+        $dokumen = new Dokumen;
+
+        $dokumen->judul = $request->input('judul');
+        $dokumen->nomor = $request->input('nomor');
+        $dokumen->id_tipe_dokumen = $request->input('jenis');
+        $dokumen->tanggal_pengesahan = $request->input('tanggal');
+        $dokumen->username_penyimpan = Auth::user()->username;
+
+        if ($request->input('status') == null)
+            $dokumen->kode_status = StatusDokumen::firstWhere('status', 'Tidak berlaku')->kode_status;
+
+        if ($dokumen->save()) {
+            return redirect()->route('admin.dokumen');
+        } else {
+            return back()
+                ->withErrors(['dokumen.kelola' => 'Ada masalah saat menambahkan data dokumen baru. Silakan coba kembali.'])
+                ->withInput();
+        }
+    }
 }
