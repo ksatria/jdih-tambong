@@ -48,5 +48,7 @@ Route::controller(PengelolaController::class)->name('admin.')->group(function ()
     Route::middleware('auth')->group(function () {
         Route::get('/dashboard', 'dashboard')->name('dashboard');
         Route::get('/daftar-dokumen', 'dokumen')->name('dokumen');
+        Route::get('/tambah-dokumen', 'tambahDokumen')->name('dokumen.tambah');
+        Route::post('/tambah-dokumen', 'prosesTambahDokumen')->name('dokumen.tambah.proses');
     });
 });
