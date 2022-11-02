@@ -16,12 +16,16 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 
-    <form method="post" action="{{ route('admin.dokumen.tambah.proses') }}">
+    <form method="post" action="{{ $actionURL }}">
         @csrf
+
+        @if (isset($isFormUpdate) and $isFormUpdate)
+            @method('PUT')
+        @endif
 
         <div class="mb-3">
             <label for="judul" class="form-label">Judul dokumen</label>
-            <input type="text" name="judul" class="form-control" required>
+            <input type="text" name="judul" class="form-control" value="{{ $judul ?? old('judul') }}" required>
             <div class="form-text">Judul dokumen menunjukkan bagian "tentang" pada dokumen tersebut</div>
             @error('judul')
                 <div class="text-danger">{{ $message }}</div>
@@ -30,7 +34,7 @@
 
         <div class="mb-3">
             <label for="nomor" class="form-label">Nomor dokumen</label>
-            <input type="text" name="nomor" class="form-control" required>
+            <input type="text" name="nomor" class="form-control" value="{{ $nomor ?? old('nomor') }}" required>
             <div class="form-text">Tuliskan nomor dokumen secara lengkap sesuai dengan yang tertera pada dokumen aslinya
             </div>
             @error('nomor')
@@ -43,7 +47,9 @@
             <div class="col-lg-9">
                 <select name="jenis" class="form-select" placeholder="Pilih" required>
                     @foreach ($tipeDokumen as $tipe)
-                        <option value="{{ $tipe->id }}">{{ $tipe->nama_tipe }}</option>
+                        <option value="{{ $tipe->id }}"
+                            {{ (isset($jenis) and $jenis == $tipe->id or old('jenis') == $tipe->id) ? 'selected' : '' }}>
+                            {{ $tipe->nama_tipe }}</option>
                     @endforeach
                 </select>
                 @error('jenis')
@@ -55,7 +61,8 @@
         <div class="mb-3 row">
             <label for="tanggal" class="col-form-label col-lg-3">Tanggal pengesahan dokumen</label>
             <div class="col-lg-9">
-                <input type="date" name="tanggal" class="form-control" required>
+                <input type="date" name="tanggal" class="form-control" value="{{ $tanggal ?? old('tanggal') }}"
+                    required>
                 <div class="form-text">Isikan sesuai dengan tanggal penandatanganan dokumen</div>
                 @error('tanggal')
                     <div class="text-danger">{{ $message }}</div>
@@ -68,7 +75,7 @@
             <div class="col-lg-9">
                 <div class="form-check form-switch">
                     <input class="form-check-input" id="input-status-dokumen" type="checkbox" role="switch" name="status"
-                        checked="{{ $status ?? true }}">
+                        {{ (!isset($status) or $status) ? 'checked' : '' }}>
                     <label class="form-check-label" id="label-status-dokumen">Berlaku</label>
                 </div>
                 @error('status')

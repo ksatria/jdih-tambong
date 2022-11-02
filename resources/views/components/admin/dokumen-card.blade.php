@@ -22,7 +22,7 @@
                 </a>
             </div>
             <div class="p-3 my-auto">
-                <a href="#" class="text-decoration-none text-body">
+                <a href="{{ $linkUbah }}" class="text-decoration-none text-body">
                     <i class="bi-pencil"></i>
                 </a>
             </div>

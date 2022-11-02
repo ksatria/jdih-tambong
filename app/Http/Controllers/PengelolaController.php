@@ -72,13 +72,33 @@ class PengelolaController extends Controller
     {
         $data = [
             "judulHalaman" => "Tambah Dokumen",
+            "actionURL" => route('admin.dokumen.tambah.proses'),
             "tipeDokumen" => TipeDokumen::all()
         ];
 
         return view('admin.dokumen.kelola', $data);
     }
 
-    function prosesTambahDokumen(Request $request)
+    function ubahDokumen($id)
+    {
+        $dokumen = Dokumen::find($id);
+
+        $data = [
+            "judulHalaman" => "Ubah Dokumen",
+            "isFormUpdate" => true,
+            "actionURL" => route('admin.dokumen.ubah.proses', ["id" => $id]),
+            "tipeDokumen" => TipeDokumen::all(),
+            "judul" => $dokumen->judul,
+            "nomor" => $dokumen->nomor,
+            "jenis" => $dokumen->id_tipe_dokumen,
+            "tanggal" => $dokumen->tanggal_pengesahan,
+            "status" => $dokumen->kode_status == StatusDokumen::firstWhere('status', 'Berlaku')->kode_status
+        ];
+
+        return view('admin.dokumen.kelola', $data);
+    }
+
+    function prosesKelolaDokumen(Request $request, $id = null)
     {
         $validation = $request->validate([
             'judul' => ['required', 'string'],
@@ -88,22 +108,28 @@ class PengelolaController extends Controller
             'berkas' => ['nullable', 'file']
         ]);
 
-        $dokumen = new Dokumen;
+        $dokumen = $id ? Dokumen::find($id) : new Dokumen;
 
         $dokumen->judul = $request->input('judul');
         $dokumen->nomor = $request->input('nomor');
         $dokumen->id_tipe_dokumen = $request->input('jenis');
         $dokumen->tanggal_pengesahan = $request->input('tanggal');
-        $dokumen->username_penyimpan = Auth::user()->username;
+
+        if (!$id) $dokumen->username_penyimpan = Auth::user()->username;
+        else $dokumen->username_pengubah = Auth::user()->username;
 
         if ($request->input('status') == null)
             $dokumen->kode_status = StatusDokumen::firstWhere('status', 'Tidak berlaku')->kode_status;
+        else
+            $dokumen->kode_status = StatusDokumen::firstWhere('status', 'Berlaku')->kode_status;
 
         if ($dokumen->save()) {
             return redirect()->route('admin.dokumen');
         } else {
+            $aktivitas = $id ? "mengubah" : "menambahkan";
+
             return back()
-                ->withErrors(['dokumen.kelola' => 'Ada masalah saat menambahkan data dokumen baru. Silakan coba kembali.'])
+                ->withErrors(['dokumen.kelola' => "Ada masalah saat {$aktivitas} data dokumen. Silakan coba kembali."])
                 ->withInput();
         }
     }
