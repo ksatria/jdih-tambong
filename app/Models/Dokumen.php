@@ -39,7 +39,7 @@ class Dokumen extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'tanggal_pengesahan' => 'date'
+        // 'tanggal_pengesahan' => 'date'
     ];
 
     /**
