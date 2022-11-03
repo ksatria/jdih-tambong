@@ -72,8 +72,8 @@ class PengelolaController extends Controller
     {
         $data = [
             "judulHalaman" => "Tambah Dokumen",
-            "actionURL" => route('admin.dokumen.tambah.proses'),
-            "tipeDokumen" => TipeDokumen::all()
+            "actionURL"    => route('admin.dokumen.tambah.proses'),
+            "tipeDokumen"  => TipeDokumen::all()
         ];
 
         return view('admin.dokumen.kelola', $data);
@@ -86,13 +86,13 @@ class PengelolaController extends Controller
         $data = [
             "judulHalaman" => "Ubah Dokumen",
             "isFormUpdate" => true,
-            "actionURL" => route('admin.dokumen.ubah.proses', ["id" => $id]),
-            "tipeDokumen" => TipeDokumen::all(),
-            "judul" => $dokumen->judul,
-            "nomor" => $dokumen->nomor,
-            "jenis" => $dokumen->id_tipe_dokumen,
-            "tanggal" => $dokumen->tanggal_pengesahan,
-            "status" => $dokumen->kode_status == StatusDokumen::firstWhere('status', 'Berlaku')->kode_status
+            "actionURL"    => route('admin.dokumen.ubah.proses', ["id" => $id]),
+            "tipeDokumen"  => TipeDokumen::all(),
+            "judul"        => $dokumen->judul,
+            "nomor"        => $dokumen->nomor,
+            "jenis"        => $dokumen->id_tipe_dokumen,
+            "tanggal"      => $dokumen->tanggal_pengesahan,
+            "status"       => $dokumen->kode_status == StatusDokumen::firstWhere('status', 'Berlaku')->kode_status
         ];
 
         return view('admin.dokumen.kelola', $data);
@@ -101,22 +101,22 @@ class PengelolaController extends Controller
     function prosesKelolaDokumen(Request $request, $id = null)
     {
         $validation = $request->validate([
-            'judul' => ['required', 'string'],
-            'nomor' => ['required'],
-            'jenis' => ['required'],
+            'judul'   => ['required', 'string'],
+            'nomor'   => ['required'],
+            'jenis'   => ['required'],
             'tanggal' => ['required', 'date'],
-            'berkas' => ['nullable', 'file']
+            'berkas'  => ['nullable', 'file']
         ]);
 
         $dokumen = $id ? Dokumen::find($id) : new Dokumen;
 
-        $dokumen->judul = $request->input('judul');
-        $dokumen->nomor = $request->input('nomor');
-        $dokumen->id_tipe_dokumen = $request->input('jenis');
+        $dokumen->judul              = $request->input('judul');
+        $dokumen->nomor              = $request->input('nomor');
+        $dokumen->id_tipe_dokumen    = $request->input('jenis');
         $dokumen->tanggal_pengesahan = $request->input('tanggal');
 
         if (!$id) $dokumen->username_penyimpan = Auth::user()->username;
-        else $dokumen->username_pengubah = Auth::user()->username;
+        else      $dokumen->username_pengubah  = Auth::user()->username;
 
         if ($request->input('status') == null)
             $dokumen->kode_status = StatusDokumen::firstWhere('status', 'Tidak berlaku')->kode_status;

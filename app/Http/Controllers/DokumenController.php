@@ -25,8 +25,8 @@ class DokumenController extends Controller
 
         $data = [
             "deskripsiHalaman" => "Kumpulan semua dokumen hukum di lingkungan Desa Tambong, Kabat, Banyuwangi, Jawa Timur",
-            "judulHalaman" => "Dokumen Hukum",
-            "kumpulanDokumen" => $dokumen
+            "judulHalaman"     => "Dokumen Hukum",
+            "kumpulanDokumen"  => $dokumen
         ];
 
         return view('dokumen.semua', $data);
@@ -75,8 +75,8 @@ class DokumenController extends Controller
 
         $data = [
             "deskripsiHalaman" => "Kumpulan {$kepanjangan} yang diterbitkan di lingkungan Desa Tambong, Kabat, Banyuwangi, Jawa Timur",
-            "judulHalaman" => $kepanjangan,
-            "kumpulanDokumen" => $dokumen
+            "judulHalaman"     => $kepanjangan,
+            "kumpulanDokumen"  => $dokumen
         ];
 
         return view('dokumen.semua', $data);
@@ -89,20 +89,20 @@ class DokumenController extends Controller
 
         if ($dokumen === null) return view('page-not-found');
 
-        $tipe = $dokumen->tipeDokumen->nama_tipe;
-        $nomor = $dokumen->nomor;
-        $tahun = date('Y', strtotime($dokumen->tanggal_pengesahan));
+        $tipe      = $dokumen->tipeDokumen->nama_tipe;
+        $nomor     = $dokumen->nomor;
+        $tahun     = date('Y', strtotime($dokumen->tanggal_pengesahan));
 
         $identitas = "{$tipe} Nomor {$nomor} Tahun {$tahun}";
-        $judul = $dokumen->judul;
+        $judul     = $dokumen->judul;
         $deskripsi = "{$identitas} Tentang {$judul}";
 
         $data = [
             "deskripsiHalaman" => $deskripsi,
-            "judulHalaman" => $identitas,
-            "identitas" => $identitas,
-            "judul" => $judul,
-            "dokumen" => $dokumen
+            "judulHalaman"     => $identitas,
+            "identitas"        => $identitas,
+            "judul"            => $judul,
+            "dokumen"          => $dokumen
         ];
 
         return view('dokumen.detail', $data);
@@ -118,7 +118,7 @@ class DokumenController extends Controller
 
         $data = [
             "keyword" => $keyword,
-            "hasil" => $hasilPencarian
+            "hasil"   => $hasilPencarian
         ];
 
         return view('pencarian', $data);

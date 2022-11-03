@@ -28,8 +28,8 @@ class Dokumen extends Model
      * @var array
      */
     protected $attributes = [
-        'kode_status' => 'B',
-        'jumlah_lihat' => 0,
+        'kode_status'     => 'B',
+        'jumlah_lihat'    => 0,
         'jumlah_download' => 0
     ];
 
