@@ -71,4 +71,12 @@ class Dokumen extends Model
     {
         return $this->belongsTo(StatusDokumen::class, 'kode_status', 'kode_status');
     }
+
+    /**
+     * Setiap dokumen mungkin memiliki banyak berkas
+     */
+    public function berkas()
+    {
+        return $this->hasMany(Berkas::class, 'id_dokumen', 'id');
+    }
 }

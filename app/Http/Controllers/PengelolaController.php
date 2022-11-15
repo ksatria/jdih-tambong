@@ -123,6 +123,10 @@ class PengelolaController extends Controller
         else
             $dokumen->kode_status = StatusDokumen::firstWhere('status', 'Berlaku')->kode_status;
 
+        if ($request->hasFile('berkas')) {
+            $dokumen->lokasi_file = $request->file('berkas')->store('dokumen');
+        }
+
         if ($dokumen->save()) {
             return redirect()->route('admin.dokumen');
         } else {
