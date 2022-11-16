@@ -12,5 +12,5 @@
         </div>
     </div>
 
-    <x-dokumen.detail :dokumen="$dokumen" />
+    <x-dokumen.detail :dokumen="$dokumen" :halamanAdmin=true />
 @endsection

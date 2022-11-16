@@ -7,12 +7,16 @@ use App\Models\Dokumen;
 
 class Detail extends Component
 {
+    public $halamanAdmin;
+
+    public $id;
     public $judul;
     public $tipe;
     public $nomor;
     public $tahun;
     public $tanggal;
     public $status;
+    public $berkasTerkait;
 
     private $bulan = [
         "Januari", "Februari", "Maret",
@@ -26,14 +30,18 @@ class Detail extends Component
      *
      * @return void
      */
-    public function __construct(Dokumen $dokumen)
+    public function __construct(Dokumen $dokumen, $halamanAdmin = false)
     {
+        $this->halamanAdmin = $halamanAdmin;
+
+        $this->id = $dokumen->id;
         $this->judul = $dokumen->judul;
         $this->tipe = $dokumen->tipeDokumen->nama_tipe;
         $this->nomor = $dokumen->nomor;
         $this->tahun = date('Y', strtotime($dokumen->tanggal_pengesahan));
         $this->tanggal = $this->formatTanggal($dokumen->tanggal_pengesahan);
         $this->status = $dokumen->statusDokumen->status;
+        $this->berkasTerkait = $dokumen->berkas;
     }
 
     /**
