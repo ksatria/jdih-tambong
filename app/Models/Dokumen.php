@@ -52,8 +52,7 @@ class Dokumen extends Model
         'nomor',
         'id_tipe_dokumen',
         'tanggal_pengesahan',
-        'kode_status',
-        'lokasi_file'
+        'kode_status'
     ];
 
     /**

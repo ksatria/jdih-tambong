@@ -68,6 +68,19 @@ class PengelolaController extends Controller
         return view('admin.dokumen.semua', $data);
     }
 
+    function detailDokumen($id)
+    {
+        $dokumen = Dokumen::find($id);
+
+        if ($dokumen === null) return view('page-not-found');
+
+        $data = [
+            "dokumen" => $dokumen
+        ];
+
+        return view('admin.dokumen.detail', $data);
+    }
+
     function tambahDokumen()
     {
         $data = [
@@ -84,15 +97,17 @@ class PengelolaController extends Controller
         $dokumen = Dokumen::find($id);
 
         $data = [
-            "judulHalaman" => "Ubah Dokumen",
+            "judulHalaman" => "Kelola Dokumen",
             "isFormUpdate" => true,
             "actionURL"    => route('admin.dokumen.ubah.proses', ["id" => $id]),
             "tipeDokumen"  => TipeDokumen::all(),
+            "idDokumen"    => $id,
             "judul"        => $dokumen->judul,
             "nomor"        => $dokumen->nomor,
             "jenis"        => $dokumen->id_tipe_dokumen,
             "tanggal"      => $dokumen->tanggal_pengesahan,
-            "status"       => $dokumen->kode_status == StatusDokumen::firstWhere('status', 'Berlaku')->kode_status
+            "status"       => $dokumen->statusDokumen->status == 'Berlaku',
+            "berkasTerkait" => $dokumen->berkas
         ];
 
         return view('admin.dokumen.kelola', $data);
@@ -105,7 +120,6 @@ class PengelolaController extends Controller
             'nomor'   => ['required'],
             'jenis'   => ['required'],
             'tanggal' => ['required', 'date'],
-            'berkas'  => ['nullable', 'file']
         ]);
 
         $dokumen = $id ? Dokumen::find($id) : new Dokumen;
@@ -123,12 +137,8 @@ class PengelolaController extends Controller
         else
             $dokumen->kode_status = StatusDokumen::firstWhere('status', 'Berlaku')->kode_status;
 
-        if ($request->hasFile('berkas')) {
-            $dokumen->lokasi_file = $request->file('berkas')->store('dokumen');
-        }
-
         if ($dokumen->save()) {
-            return redirect()->route('admin.dokumen');
+            return redirect()->route('admin.dokumen.detail', ["id" => $dokumen->id]);
         } else {
             $aktivitas = $id ? "mengubah" : "menambahkan";
 

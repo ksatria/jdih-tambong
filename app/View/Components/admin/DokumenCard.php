@@ -11,6 +11,7 @@ class DokumenCard extends Component
      * Daftar variabel pada komponen
      */
     public $link;
+    public $linkDetail;
     public $linkUbah;
     public $judul;
     public $nomor;
@@ -35,6 +36,7 @@ class DokumenCard extends Component
     public function __construct(Dokumen $dokumen)
     {
         $this->link = $this->generateLink($dokumen->id, $dokumen->judul, $dokumen->tipeDokumen->singkatan_tipe);
+        $this->linkDetail = route('admin.dokumen.detail', ["id" => $dokumen->id]);
         $this->linkUbah = route('admin.dokumen.ubah', ["id" => $dokumen->id]);
         $this->judul = $dokumen->judul;
         $this->nomor = $dokumen->nomor;

@@ -6,7 +6,7 @@
                     {{ $jenis }} Nomor {{ $nomor }} Tahun {{ $tahun }}
                 </div>
                 <h2 class="card-title fs-6">
-                    <a href={{ $link }} class="text-decoration-none text-body">{{ $judul }}</a>
+                    <a href="{{ $linkDetail }}" class="text-decoration-none text-body">{{ $judul }}</a>
                 </h2>
                 <small class="text-muted">
                     <i class="bi-calendar2-check"></i> <span class="me-2">{{ $tanggal }}</span>

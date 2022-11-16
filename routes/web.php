@@ -48,6 +48,7 @@ Route::controller(PengelolaController::class)->name('admin.')->group(function ()
     Route::middleware('auth')->group(function () {
         Route::get('/dashboard', 'dashboard')->name('dashboard');
         Route::get('/daftar-dokumen', 'dokumen')->name('dokumen');
+        Route::get('/detail-dokumen/{id}', 'detailDokumen')->name('dokumen.detail');
         Route::get('/tambah-dokumen', 'tambahDokumen')->name('dokumen.tambah');
         Route::post('/tambah-dokumen', 'prosesKelolaDokumen')->name('dokumen.tambah.proses');
         Route::get('/ubah-dokumen/{id}', 'ubahDokumen')->name('dokumen.ubah');
