@@ -85,18 +85,6 @@
             </div>
         </div>
 
-        @if (isset($isFormUpdate) and $isFormUpdate)
-            <div class="mb-3 row">
-                <label for="berkas-terkait" class="form-label col-lg-3">Berkas terkait</label>
-                <div class="col-lg-9">
-                    <x-berkas.berkas-terkait :berkasTerkait="$berkasTerkait" />
-                    <div class="form-text"><a href="{{ route('berkas.unggah', ['idDokumen' => $idDokumen]) }}">Tambahkan
-                            berkas</a>
-                    </div>
-                </div>
-            </div>
-        @endif
-
         <button type="submit" class="btn btn-primary">Simpan</button>
         <button type="reset" class="btn btn-outline-secondary">Reset</button>
     </form>
