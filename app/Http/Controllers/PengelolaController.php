@@ -76,7 +76,11 @@ class PengelolaController extends Controller
         if ($dokumen === null) return view('page-not-found');
 
         $data = [
-            "dokumen" => $dokumen
+            "dokumen"       => $dokumen,
+            "namaPenyimpan" => $dokumen->pengelolaPenyimpan->nama,
+            "waktuSimpan"   => $dokumen->waktu_simpan,
+            "namaPengubah"  => $dokumen->username_pengubah ? $dokumen->pengelolaPengubah->nama : null,
+            "waktuUbah"     => $dokumen->waktu_ubah_terakhir
         ];
 
         return view('admin.dokumen.detail', $data);

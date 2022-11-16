@@ -72,6 +72,22 @@ class Dokumen extends Model
     }
 
     /**
+     * Setiap dokumen disimpan oleh seorang pengelola
+     */
+    public function pengelolaPenyimpan()
+    {
+        return $this->belongsTo(Pengelola::class, 'username_penyimpan', 'username');
+    }
+
+    /**
+     * Setiap dokumen terakhir diubah oleh seorang pengelola
+     */
+    public function pengelolaPengubah()
+    {
+        return $this->belongsTo(Pengelola::class, 'username_pengubah', 'username');
+    }
+
+    /**
      * Setiap dokumen mungkin memiliki banyak berkas
      */
     public function berkas()
