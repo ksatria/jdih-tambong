@@ -41,10 +41,16 @@ Route::controller(DokumenController::class)->group(function () {
  * Route ke halaman-halaman untuk admin
  */
 Route::controller(PengelolaController::class)->name('admin.')->group(function () {
+    /**
+     * Route ke fitur otentikasi pengguna
+     */
     Route::get('/pintu-masuk', 'login')->name('login');
     Route::post('/login', 'prosesLogin')->name('login.proses');
     Route::get('/logout', 'logout')->name('logout');
 
+    /**
+     * Semua route yang hanya bisa diakses oleh pengelola terotentikasi
+     */
     Route::middleware('auth')->group(function () {
         Route::get('/dashboard', 'dashboard')->name('dashboard');
         Route::get('/daftar-dokumen', 'dokumen')->name('dokumen');
