@@ -21,21 +21,29 @@
 
                     @csrf
 
-                    <div class="row g-1">
-                        <div class="col-lg-6">
-                            <div class="form-floating mb-3">
+                    <div class="row g-2">
+                        <div class="col-lg-5">
+                            <div class="form-floating">
                                 <input type="text" name="namaberkas" class="form-control" placeholder="nama berkas">
                                 <label for="namaberkas">Nama Berkas</label>
                             </div>
+                            @error('namaberkas')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-lg-5">
-                            <div class="form-floating mb-3">
-                                <input type="file" name="berkas" class="form-control" placeholder="berkas">
+                            <div class="form-floating">
+                                <input type="file" name="berkas" class="form-control" placeholder="berkas"
+                                    accept=".pdf">
                                 <label for="berkas">Pilih Berkas</label>
+                                <div class="form-text">* Berkas harus berupa PDF</div>
                             </div>
+                            @error('berkas')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
-                        <div class="col-lg-1">
-                            <button type="submit" class="btn btn-primary">Unggah</button>
+                        <div class="col-lg-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Unggah</button>
                         </div>
                     </div>
                 </form>

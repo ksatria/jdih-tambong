@@ -174,7 +174,7 @@ class PengelolaController extends Controller
     {
         $validation = $request->validate([
             'namaberkas' => ['required'],
-            'berkas'     => ['required', 'file'],
+            'berkas'     => ['required', 'file', 'mimes:pdf'],
         ]);
 
         $berkas = new Berkas;
