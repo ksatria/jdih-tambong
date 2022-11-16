@@ -56,5 +56,10 @@ Route::controller(PengelolaController::class)->name('admin.')->group(function ()
             Route::get('/ubah-dokumen/{id}', 'ubahDokumen')->name('ubah');
             Route::put('/ubah-dokumen/{id}', 'prosesKelolaDokumen')->name('ubah.proses');
         });
+
+        Route::name('berkas.')->group(function () {
+            Route::get('/unggah-berkas/{idDokumen}', 'unggahBerkas')->name('unggah');
+            Route::post('/unggah-berkas/{idDokumen}', 'prosesUnggahBerkas')->name('unggah.proses');
+        });
     });
 });

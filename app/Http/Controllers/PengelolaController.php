@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Dokumen;
 use App\Models\TipeDokumen;
 use App\Models\StatusDokumen;
+use App\Models\Berkas;
 
 class PengelolaController extends Controller
 {
@@ -144,6 +145,50 @@ class PengelolaController extends Controller
 
             return back()
                 ->withErrors(['dokumen.kelola' => "Ada masalah saat {$aktivitas} data dokumen. Silakan coba kembali."])
+                ->withInput();
+        }
+    }
+
+    function unggahBerkas($idDokumen)
+    {
+        $dokumen = Dokumen::find($idDokumen);
+
+        $tipe      = $dokumen->tipeDokumen->nama_tipe;
+        $nomor     = $dokumen->nomor;
+        $tahun     = date('Y', strtotime($dokumen->tanggal_pengesahan));
+
+        $identitas = "{$tipe} Nomor {$nomor} Tahun {$tahun}";
+        $judul     = $dokumen->judul;
+        $deskripsi = "{$identitas} Tentang {$judul}";
+
+        $data = [
+            "idDokumen"        => $idDokumen,
+            "identitasDokumen" => $deskripsi,
+            "berkasTerkait"    => $dokumen->berkas
+        ];
+
+        return view('admin.berkas.unggah', $data);
+    }
+
+    function prosesUnggahBerkas(Request $request, $idDokumen)
+    {
+        $validation = $request->validate([
+            'namaberkas' => ['required'],
+            'berkas'     => ['required', 'file'],
+        ]);
+
+        $berkas = new Berkas;
+
+        $berkas->nama                = $request->input('namaberkas');
+        $berkas->lokasi              = $request->file('berkas')->store('berkas');
+        $berkas->id_dokumen          = $idDokumen;
+        $berkas->username_pengunggah = Auth::user()->username;
+
+        if ($berkas->save()) {
+            return redirect()->route('admin.berkas.unggah', ["idDokumen" => $idDokumen]);
+        } else {
+            return back()
+                ->withErrors(['berkas.unggah' => 'Ada masalah saat mengunggah berkas. Silakan coba kembali.'])
                 ->withInput();
         }
     }

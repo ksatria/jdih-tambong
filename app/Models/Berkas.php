@@ -22,6 +22,13 @@ class Berkas extends Model
     const CREATED_AT = 'waktu_unggah';
 
     /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
      * Setiap berkas hanya dimiliki oleh satu dokumen
      */
     public function dokumen()
