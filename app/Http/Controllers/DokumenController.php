@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Dokumen;
+use App\Models\Berkas;
 
 class DokumenController extends Controller
 {
@@ -122,5 +124,16 @@ class DokumenController extends Controller
         ];
 
         return view('pencarian', $data);
+    }
+
+    function unduhBerkas($idBerkas)
+    {
+        $berkas = Berkas::find($idBerkas);
+
+        if ($berkas === null) return view('page-not-found');
+
+        $lokasi = $berkas->lokasi;
+
+        return Storage::download($lokasi);
     }
 }

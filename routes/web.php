@@ -35,6 +35,11 @@ Route::controller(DokumenController::class)->group(function () {
      * Route ke fitur pencarian dokumen
      */
     Route::get('/cari', 'cariDokumen')->name('cari');
+
+    /**
+     * Route unduh berkas terkait suatu dokumen
+     */
+    Route::get('/unduh/{id}', 'unduhBerkas')->name('berkas.unduh');
 });
 
 /**

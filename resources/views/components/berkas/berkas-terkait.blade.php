@@ -3,7 +3,7 @@
 @else
     <ul>
         @foreach ($berkasTerkait as $berkas)
-            <li><a href="#">{{ $berkas->nama }}</a></li>
+            <li><a href="{{ route('berkas.unduh', ['id' => $berkas->id]) }}">{{ $berkas->nama }}</a></li>
         @endforeach
     </ul>
 @endif
