@@ -94,4 +94,13 @@ class Dokumen extends Model
     {
         return $this->hasMany(Berkas::class, 'id_dokumen', 'id');
     }
+
+    /**
+     * Setiap dokumen dapat saling terkait dengan beberapa dokumen lainnya
+     */
+    public function dokumenTerkait()
+    {
+        return $this->belongsToMany(Dokumen::class, 'dokumen_terkait', 'id_dokumen_utama', 'id_dokumen_terkait')
+            ->using(DokumenTerkait::class);
+    }
 }

@@ -17,6 +17,7 @@ class Detail extends Component
     public $tanggal;
     public $status;
     public $berkasTerkait;
+    public $dokumenTerkait;
 
     private $bulan = [
         "Januari", "Februari", "Maret",
@@ -42,6 +43,7 @@ class Detail extends Component
         $this->tanggal = $this->formatTanggal($dokumen->tanggal_pengesahan);
         $this->status = $dokumen->statusDokumen->status;
         $this->berkasTerkait = $dokumen->berkas;
+        $this->dokumenTerkait = $dokumen->dokumenTerkait;
     }
 
     /**

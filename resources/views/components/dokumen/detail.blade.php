@@ -44,5 +44,17 @@
                 @endif
             </td>
         </tr>
+        <tr>
+            <td>Dokumen terkait</td>
+            <td>:</td>
+            <td>
+                <x-dokumen.terkait :dokumenTerkait="$dokumenTerkait" />
+
+                @if ($halamanAdmin)
+                    <p class="small"><a href="#">Tambahkan dokumen
+                            terkait</a></p>
+                @endif
+            </td>
+        </tr>
     </tbody>
 </table>
