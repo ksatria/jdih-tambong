@@ -74,7 +74,7 @@
                     <input class="form-check-input" id="input-status-dokumen" type="checkbox" role="switch" name="status"
                         {{ (!isset($status) or $status) ? 'checked' : '' }}>
                     <label class="form-check-label"
-                        id="label-status-dokumen">{{ (!isset($status) or $status) ? 'Berlaku' : 'Tidak berlaku' }}</label>
+                        for="label-status-dokumen">{{ (!isset($status) or $status) ? 'Berlaku' : 'Tidak berlaku' }}</label>
                 </div>
                 @error('status')
                     <div class="text-danger">{{ $message }}</div>
