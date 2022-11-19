@@ -33,7 +33,7 @@ class Card extends Component
      */
     public function __construct(Dokumen $dokumen)
     {
-        $this->link = $this->generateLink($dokumen->id, $dokumen->judul, $dokumen->tipeDokumen->singkatan_tipe);
+        $this->link = linkPublikDokumen($dokumen->id, $dokumen->judul, $dokumen->tipeDokumen->singkatan_tipe);
         $this->judul = $dokumen->judul;
         $this->nomor = $dokumen->nomor;
         $this->tanggal = $this->formatTanggal($dokumen->tanggal_pengesahan);
@@ -41,52 +41,6 @@ class Card extends Component
         $this->jenis = $dokumen->tipeDokumen->nama_tipe;
         $this->jumlahDilihat = $dokumen->jumlah_lihat;
         $this->jumlahDidownload = $dokumen->jumlah_download;
-    }
-
-    /**
-     * Buat link ke halaman detail dokumen
-     */
-    private function generateLink($id, $judul, $tipe)
-    {
-        switch ($tipe) {
-            case "Perdes":
-                $link = route('perdes', ["id" => $id, "title" => $this->formatJudul($judul)]);
-                break;
-            case "Perkades":
-                $link = route('perkades', ["id" => $id, "title" => $this->formatJudul($judul)]);
-                break;
-            case "Permakades":
-                $link = route('permakades', ["id" => $id, "title" => $this->formatJudul($judul)]);
-                break;
-            case "SK Kades":
-                $link = route('keputusan', ["id" => $id, "title" => $this->formatJudul($judul)]);
-                break;
-            case "Lain":
-                $link = route('lain-lain', ["id" => $id, "title" => $this->formatJudul($judul)]);
-                break;
-        }
-
-        return $link;
-    }
-
-    /**
-     * Konversi judul dalam format URL SEO friendly
-     */
-    private function formatJudul($judul)
-    {
-        // Bersihkan white-space di depan dan belakang
-        $judul = trim($judul);
-
-        // Kecilkan semua huruf
-        $judul = strtolower($judul);
-
-        // Hilangkan semua karakter simbol
-        $judul = preg_replace('/[^\p{L}\p{N}\s]/u', '', $judul);
-
-        // Ganti double-white-space atau lebih menjadi notasi strip
-        $judul = preg_replace('(\s+)', '-', $judul);
-
-        return $judul;
     }
 
     /**
