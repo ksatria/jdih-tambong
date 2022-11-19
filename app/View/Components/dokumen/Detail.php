@@ -18,6 +18,7 @@ class Detail extends Component
     public $status;
     public $berkasTerkait;
     public $dokumenTerkait;
+    public $dikaitkanDengan;
 
     /**
      * Create a new component instance.
@@ -37,6 +38,7 @@ class Detail extends Component
         $this->status = $dokumen->statusDokumen->status;
         $this->berkasTerkait = $dokumen->berkas;
         $this->dokumenTerkait = $dokumen->dokumenTerkait;
+        $this->dikaitkanDengan = $dokumen->dikaitkanDengan;
     }
 
     /**

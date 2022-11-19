@@ -100,7 +100,11 @@ class Dokumen extends Model
      */
     public function dokumenTerkait()
     {
-        return $this->belongsToMany(Dokumen::class, 'dokumen_terkait', 'id_dokumen_utama', 'id_dokumen_terkait')
-            ->using(DokumenTerkait::class);
+        return $this->belongsToMany(Dokumen::class, 'dokumen_terkait', 'id_dokumen_utama', 'id_dokumen_terkait');
+    }
+
+    public function dikaitkanDengan()
+    {
+        return $this->belongsToMany(Dokumen::class, 'dokumen_terkait', 'id_dokumen_terkait', 'id_dokumen_utama');
     }
 }
