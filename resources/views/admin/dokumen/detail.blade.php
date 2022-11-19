@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('judul', 'Detail Dokumen')
+@section('judul', 'Detail Produk Hukum')
 
 @section('tombol-aksi')
     <a class="btn btn-sm btn-warning" href="{{ url()->previous() }}">
@@ -14,12 +14,12 @@
     <div class="my-3 border-top" id="informasi-tambahan">
         <h2 class="h6">Informasi Tambahan</h2>
         <ul>
-            <li class="small">Dokumen ini disimpan oleh <strong>{{ $namaPenyimpan }}</strong> pada
+            <li class="small">Data produk hukum ini disimpan oleh <strong>{{ $namaPenyimpan }}</strong> pada
                 <strong>{{ $waktuSimpan }}</strong>
             </li>
 
             @if ($namaPengubah !== null)
-                <li class="small">Dokumen ini terakhir diubah oleh <strong>{{ $namaPengubah }}</strong> pada
+                <li class="small">Data produk hukum ini terakhir diubah oleh <strong>{{ $namaPengubah }}</strong> pada
                     <strong>{{ $waktuUbah }}</strong>
                 </li>
             @endif

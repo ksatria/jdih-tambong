@@ -26,8 +26,8 @@ class DokumenController extends Controller
             ->paginate($this->JUMLAH_DOKUMEN_PER_HALAMAN);
 
         $data = [
-            "deskripsiHalaman" => "Kumpulan semua dokumen hukum di lingkungan Desa Tambong, Kabat, Banyuwangi, Jawa Timur",
-            "judulHalaman"     => "Dokumen Hukum",
+            "deskripsiHalaman" => "Kumpulan semua produk hukum di lingkungan Desa Tambong, Kabat, Banyuwangi, Jawa Timur",
+            "judulHalaman"     => "Produk Hukum Desa Tambong",
             "kumpulanDokumen"  => $dokumen
         ];
 

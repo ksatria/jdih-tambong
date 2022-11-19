@@ -11,7 +11,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ $active['admin.dokumen'] ?? '' }}" href="{{ route('admin.dokumen') }}">
                     <span data-feather="file" class="align-text-bottom"></span>
-                    Dokumen
+                    Produk Hukum
                 </a>
             </li>
         </ul>

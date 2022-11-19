@@ -45,15 +45,14 @@
             </td>
         </tr>
         <tr>
-            <td>Dokumen terkait</td>
+            <td>Produk hukum terkait</td>
             <td>:</td>
             <td>
                 <x-dokumen.terkait :dokumenTerkait="$dokumenTerkait" :dikaitkanDengan="$dikaitkanDengan" :halamanAdmin="$halamanAdmin" />
 
                 @if ($halamanAdmin)
                     <p class="small"><a href="{{ route('admin.dokumen.terkait.tambah', ['id' => $id]) }}">Tambahkan
-                            dokumen
-                            terkait</a></p>
+                            produk hukum terkait</a></p>
                 @endif
             </td>
         </tr>

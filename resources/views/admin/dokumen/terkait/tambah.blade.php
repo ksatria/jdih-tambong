@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('judul', 'Dokumen Terkait')
+@section('judul', 'Produk Hukum Terkait')
 
 @section('tombol-aksi')
     <a class="btn btn-sm btn-warning" href="{{ url()->previous() }}">
@@ -10,7 +10,7 @@
 
 @section('konten-utama')
     <div class="mb-3">
-        Cari dokumen yang terkait dengan <strong>{{ $identitasDokumenUtama }}</strong>
+        Cari produk hukum yang berkaitan dengan <strong>{{ $identitasDokumenUtama }}</strong>
 
         <div class="card mt-3">
             <div class="card-body">
@@ -31,7 +31,7 @@
 
     @if (isset($pilihanDokumen))
         <div class="mb-3">
-            <p>Pilih dokumen yang terkait dengan <strong>{{ $identitasDokumenUtama }}</strong></p>
+            <p>Pilih produk hukum yang berkaitan dengan <strong>{{ $identitasDokumenUtama }}</strong></p>
 
             <form action="{{ route('admin.dokumen.terkait.tambah.proses', ['id' => $idDokumen]) }}" method="post">
 

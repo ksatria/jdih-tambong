@@ -15,18 +15,17 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Dokumen Hukum
+                        Produk Hukum
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href={{ route('perdes') }} class="dropdown-item">Perdes</a></li>
                         <li><a href={{ route('perkades') }} class="dropdown-item">Perkades</a></li>
                         <li><a href={{ route('permakades') }} class="dropdown-item">Permakades</a></li>
                         <li><a href={{ route('keputusan') }} class="dropdown-item">SK Kades</a></li>
-                        <li><a href={{ route('lain-lain') }} class="dropdown-item">Lain-Lain</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a href={{ route('dokumen') }} class="dropdown-item">Semua Dokumen</a></li>
+                        <li><a href={{ route('dokumen') }} class="dropdown-item">Semua Produk Hukum</a></li>
                     </ul>
                 </li>
             </ul>

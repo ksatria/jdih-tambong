@@ -1,5 +1,5 @@
 @if (count($dokumenTerkait) === 0 and count($dikaitkanDengan) === 0)
-    <em>Tidak ada dokumen lain yang terkait dengan dokumen ini</em>
+    <em>Tidak ada produk hukum lain yang berkaitan dengan produk hukum ini</em>
 @else
     <ul>
         @foreach ([$dokumenTerkait, $dikaitkanDengan] as $kaitan)

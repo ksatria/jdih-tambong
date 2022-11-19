@@ -90,7 +90,7 @@ class PengelolaController extends Controller
     function tambahDokumen()
     {
         $data = [
-            "judulHalaman" => "Tambah Dokumen",
+            "judulHalaman" => "Tambah Produk Hukum",
             "actionURL"    => route('admin.dokumen.tambah.proses'),
             "tipeDokumen"  => TipeDokumen::all()
         ];
@@ -103,7 +103,7 @@ class PengelolaController extends Controller
         $dokumen = Dokumen::find($id);
 
         $data = [
-            "judulHalaman" => "Kelola Dokumen",
+            "judulHalaman" => "Kelola Produk Hukum",
             "isFormUpdate" => true,
             "actionURL"    => route('admin.dokumen.ubah.proses', ["id" => $id]),
             "tipeDokumen"  => TipeDokumen::all(),
