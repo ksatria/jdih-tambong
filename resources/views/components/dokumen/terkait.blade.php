@@ -3,8 +3,17 @@
 @else
     <ul>
         @foreach ($dokumenTerkait as $dokumen)
-            <li>{{ $dokumen->tipeDokumen->singkatan_tipe }} No. {{ $dokumen->nomor }} Tahun
-                {{ date('Y', strtotime($dokumen->tanggal_pengesahan)) }}</li>
+            @php
+                $route = (isset($halamanAdmin) and $halamanAdmin) ? route('admin.dokumen.detail', ['id' => $dokumen->id]) : linkPublikDokumen($dokumen->id, $dokumen->judul, $dokumen->tipeDokumen->singkatan_tipe);
+            @endphp
+
+            <li>
+                <a href="{{ $route }}">
+                    {{ $dokumen->tipeDokumen->singkatan_tipe }}
+                    No. {{ $dokumen->nomor }}
+                    Tahun {{ date('Y', strtotime($dokumen->tanggal_pengesahan)) }}
+                </a>
+            </li>
         @endforeach
     </ul>
 @endif

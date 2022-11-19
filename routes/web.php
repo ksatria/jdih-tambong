@@ -66,6 +66,11 @@ Route::controller(PengelolaController::class)->name('admin.')->group(function ()
             Route::post('/tambah-dokumen', 'prosesKelolaDokumen')->name('tambah.proses');
             Route::get('/ubah-dokumen/{id}', 'ubahDokumen')->name('ubah');
             Route::put('/ubah-dokumen/{id}', 'prosesKelolaDokumen')->name('ubah.proses');
+
+            Route::name('terkait.')->group(function () {
+                Route::get('/dokumen-terkait/{id}', 'tambahDokumenTerkait')->name('tambah');
+                Route::post('/dokumen-terkait/{id}', 'prosesTambahDokumenTerkait')->name('tambah.proses');
+            });
         });
 
         Route::name('berkas.')->group(function () {

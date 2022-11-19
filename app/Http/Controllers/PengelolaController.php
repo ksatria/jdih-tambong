@@ -9,6 +9,7 @@ use App\Models\Dokumen;
 use App\Models\TipeDokumen;
 use App\Models\StatusDokumen;
 use App\Models\Berkas;
+use App\Models\DokumenTerkait;
 
 class PengelolaController extends Controller
 {
@@ -195,5 +196,53 @@ class PengelolaController extends Controller
                 ->withErrors(['berkas.unggah' => 'Ada masalah saat mengunggah berkas. Silakan coba kembali.'])
                 ->withInput();
         }
+    }
+
+    function tambahDokumenTerkait(Request $request, $idDokumen)
+    {
+        $dokumenUtama = Dokumen::find($idDokumen);
+
+        if ($dokumenUtama == null) return view('page-not-found');
+
+        $tipe      = $dokumenUtama->tipeDokumen->nama_tipe;
+        $nomor     = $dokumenUtama->nomor;
+        $tahun     = date('Y', strtotime($dokumenUtama->tanggal_pengesahan));
+
+        $identitas = "{$tipe} Nomor {$nomor} Tahun {$tahun}";
+        $judul     = $dokumenUtama->judul;
+        $deskripsi = "{$identitas} Tentang {$judul}";
+
+        $data = [
+            "idDokumen"             => $idDokumen,
+            "identitasDokumenUtama" => $deskripsi
+        ];
+
+        $keyword   = $request->input('q');
+
+        if (!empty($keyword)) {
+            // TODO: Dokumen yang sudah diatur sebagai dokumen terkait dengan dokumen utama harus di-exclude-kan juga dari hasil pencarian
+            $pilihanDokumenTerkait = Dokumen::where('judul', 'like', "%{$keyword}%")
+                ->where('id', '!=', $idDokumen)
+                ->orderBy('tanggal_pengesahan', 'desc')
+                ->get();
+
+            $data["kataKunci"]      = $keyword;
+            $data["pilihanDokumen"] = $pilihanDokumenTerkait;
+        }
+
+        return view('admin.dokumen.terkait.tambah', $data);
+    }
+
+    function prosesTambahDokumenTerkait(Request $request, $idDokumen)
+    {
+        $data = [];
+
+        foreach ($request->input('dokumen_terkait') as $idDokumenTerkait) {
+            $data[] = ['id_dokumen_utama' => $idDokumen, 'id_dokumen_terkait' => $idDokumenTerkait];
+        }
+
+        DokumenTerkait::upsert($data, ['id_dokumen_utama', 'id_dokumen_terkait']);
+
+        return redirect()->route('admin.dokumen.detail', ['id' => $idDokumen]);
     }
 }

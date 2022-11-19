@@ -48,10 +48,11 @@
             <td>Dokumen terkait</td>
             <td>:</td>
             <td>
-                <x-dokumen.terkait :dokumenTerkait="$dokumenTerkait" />
+                <x-dokumen.terkait :dokumenTerkait="$dokumenTerkait" :halamanAdmin="$halamanAdmin" />
 
                 @if ($halamanAdmin)
-                    <p class="small"><a href="#">Tambahkan dokumen
+                    <p class="small"><a href="{{ route('admin.dokumen.terkait.tambah', ['id' => $id]) }}">Tambahkan
+                            dokumen
                             terkait</a></p>
                 @endif
             </td>
