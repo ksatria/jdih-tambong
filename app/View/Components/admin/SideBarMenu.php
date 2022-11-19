@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 class SideBarMenu extends Component
 {
     public $isSuperAdmin = false;
-    public $active = [];
+    public $active       = [];
 
     /**
      * Create a new component instance.
@@ -18,10 +18,10 @@ class SideBarMenu extends Component
      */
     public function __construct()
     {
-        $pengelola = Auth::user();
+        $pengelola          = Auth::user();
         $this->isSuperAdmin = ($pengelola->levelPengelola->level == 'Super admin');
 
-        $routeName = Route::currentRouteName();
+        $routeName                = Route::currentRouteName();
         $this->active[$routeName] = 'active';
     }
 

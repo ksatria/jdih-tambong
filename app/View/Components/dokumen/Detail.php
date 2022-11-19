@@ -27,17 +27,17 @@ class Detail extends Component
      */
     public function __construct(Dokumen $dokumen, $halamanAdmin = false)
     {
-        $this->halamanAdmin = $halamanAdmin;
+        $this->halamanAdmin    = $halamanAdmin;
 
-        $this->id = $dokumen->id;
-        $this->judul = $dokumen->judul;
-        $this->tipe = $dokumen->tipeDokumen->nama_tipe;
-        $this->nomor = $dokumen->nomor;
-        $this->tahun = date('Y', strtotime($dokumen->tanggal_pengesahan));
-        $this->tanggal = formatTanggal($dokumen->tanggal_pengesahan, includeHari: false);
-        $this->status = $dokumen->statusDokumen->status;
-        $this->berkasTerkait = $dokumen->berkas;
-        $this->dokumenTerkait = $dokumen->dokumenTerkait;
+        $this->id              = $dokumen->id;
+        $this->judul           = $dokumen->judul;
+        $this->tipe            = $dokumen->tipeDokumen->nama_tipe;
+        $this->nomor           = $dokumen->nomor;
+        $this->tahun           = date('Y', strtotime($dokumen->tanggal_pengesahan));
+        $this->tanggal         = formatTanggal($dokumen->tanggal_pengesahan, includeHari: false);
+        $this->status          = $dokumen->statusDokumen->status;
+        $this->berkasTerkait   = $dokumen->berkas;
+        $this->dokumenTerkait  = $dokumen->dokumenTerkait;
         $this->dikaitkanDengan = $dokumen->dikaitkanDengan;
     }
 

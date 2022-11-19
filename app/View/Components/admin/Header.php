@@ -15,7 +15,7 @@ class Header extends Component
      */
     public function __construct()
     {
-        $pengelola = Auth::user();
+        $pengelola           = Auth::user();
         $this->namaPengelola = $pengelola->nama;
     }
 
