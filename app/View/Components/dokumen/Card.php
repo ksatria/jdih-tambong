@@ -36,20 +36,11 @@ class Card extends Component
         $this->link = linkPublikDokumen($dokumen->id, $dokumen->judul, $dokumen->tipeDokumen->singkatan_tipe);
         $this->judul = $dokumen->judul;
         $this->nomor = $dokumen->nomor;
-        $this->tanggal = $this->formatTanggal($dokumen->tanggal_pengesahan);
+        $this->tanggal = formatTanggal($dokumen->tanggal_pengesahan, includeHari: false);
         $this->tahun = date('Y', strtotime($dokumen->tanggal_pengesahan));
         $this->jenis = $dokumen->tipeDokumen->nama_tipe;
         $this->jumlahDilihat = $dokumen->jumlah_lihat;
         $this->jumlahDidownload = $dokumen->jumlah_download;
-    }
-
-    /**
-     * Format tanggal
-     */
-    private function formatTanggal($tgl)
-    {
-        $tgl = strtotime($tgl);
-        return date('d', $tgl) . " " . $this->bulan[date('n', $tgl) - 1] . " " . date('Y', $tgl);
     }
 
     /**

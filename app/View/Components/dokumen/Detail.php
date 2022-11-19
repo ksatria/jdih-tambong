@@ -40,19 +40,10 @@ class Detail extends Component
         $this->tipe = $dokumen->tipeDokumen->nama_tipe;
         $this->nomor = $dokumen->nomor;
         $this->tahun = date('Y', strtotime($dokumen->tanggal_pengesahan));
-        $this->tanggal = $this->formatTanggal($dokumen->tanggal_pengesahan);
+        $this->tanggal = formatTanggal($dokumen->tanggal_pengesahan, includeHari: false);
         $this->status = $dokumen->statusDokumen->status;
         $this->berkasTerkait = $dokumen->berkas;
         $this->dokumenTerkait = $dokumen->dokumenTerkait;
-    }
-
-    /**
-     * Format tanggal
-     */
-    private function formatTanggal($tgl)
-    {
-        $tgl = strtotime($tgl);
-        return date('d', $tgl) . " " . $this->bulan[date('n', $tgl) - 1] . " " . date('Y', $tgl);
     }
 
     /**

@@ -78,9 +78,9 @@ class PengelolaController extends Controller
         $data = [
             "dokumen"       => $dokumen,
             "namaPenyimpan" => $dokumen->pengelolaPenyimpan->nama,
-            "waktuSimpan"   => $dokumen->waktu_simpan,
+            "waktuSimpan"   => formatTanggal($dokumen->waktu_simpan, includeWaktu: true),
             "namaPengubah"  => $dokumen->username_pengubah ? $dokumen->pengelolaPengubah->nama : null,
-            "waktuUbah"     => $dokumen->waktu_ubah_terakhir
+            "waktuUbah"     => formatTanggal($dokumen->waktu_ubah_terakhir, includeWaktu: true)
         ];
 
         return view('admin.dokumen.detail', $data);

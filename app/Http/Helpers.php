@@ -51,3 +51,46 @@ if (!function_exists('formatJudul')) {
         return $judul;
     }
 }
+
+/**
+ * Format tanggal
+ */
+if (!function_exists('formatTanggal')) {
+
+    function formatTanggal($dateTimeString, $includeWaktu = false, $includeHari = true)
+    {
+        $DAFTAR_BULAN = [
+            "Januari", "Februari", "Maret",
+            "April",   "Mei",      "Juni",
+            "Juli",    "Agustus",  "September",
+            "Oktober", "November", "Desember"
+        ];
+
+        $DAFTAR_HARI = [
+            "Senin",  "Selasa", "Rabu", "Kamis",
+            "Jum'at", "Sabtu",  "Minggu"
+        ];
+
+        $dateTime = strtotime($dateTimeString);
+
+        $tanggal = date('d', $dateTime);
+        $bulan   = $DAFTAR_BULAN[date('n', $dateTime) - 1];
+        $tahun   = date('Y', $dateTime);
+
+        $stringHasil = "{$tanggal} {$bulan} {$tahun}";
+
+        if ($includeWaktu) {
+            $waktu = date('H:i:s', $dateTime);
+
+            $stringHasil .= " pukul {$waktu}";
+        }
+
+        if ($includeHari) {
+            $hari = $DAFTAR_HARI[date('N', $dateTime) - 1];
+
+            $stringHasil = "{$hari}, {$stringHasil}";
+        }
+
+        return $stringHasil;
+    }
+}
