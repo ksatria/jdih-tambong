@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Dokumen;
+
 /**
  * Buat link ke halaman detail dokumen untuk akses publik
  */
@@ -92,5 +94,27 @@ if (!function_exists('formatTanggal')) {
         }
 
         return $stringHasil;
+    }
+}
+
+/**
+ * Identitas dokumen / produk hukum
+ */
+if (!function_exists('identitasDokumen')) {
+
+    function identitasDokumen(Dokumen $dokumen, $tanpaJudul = false)
+    {
+        $tipe      = $dokumen->tipeDokumen->nama_tipe;
+        $nomor     = $dokumen->nomor;
+        $tahun     = date('Y', strtotime($dokumen->tanggal_pengesahan));
+
+        $identitas = "{$tipe} Nomor {$nomor} Tahun {$tahun}";
+
+        if (!$tanpaJudul) {
+            $judul     = $dokumen->judul;
+            $identitas = "{$identitas} Tentang {$judul}";
+        }
+
+        return $identitas;
     }
 }

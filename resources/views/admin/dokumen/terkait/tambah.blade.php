@@ -42,10 +42,7 @@
                         <input type="checkbox" name="dokumen_terkait[]" id="pilihan-{{ $dokumen->id }}"
                             class="form-check-input" value="{{ $dokumen->id }}">
                         <label for="pilihan-{{ $dokumen->id }}" class="form-check-label">
-                            {{ $dokumen->tipeDokumen->singkatan_tipe }}
-                            No. {{ $dokumen->nomor }}
-                            Tahun {{ date('Y', strtotime($dokumen->tanggal_pengesahan)) }}
-                            Tentang {{ $dokumen->judul }}
+                            {{ identitasDokumen($dokumen) }}
                         </label>
                     </div>
                 @endforeach

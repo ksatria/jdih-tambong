@@ -10,6 +10,7 @@ use App\Models\TipeDokumen;
 use App\Models\StatusDokumen;
 use App\Models\Berkas;
 use App\Models\DokumenTerkait;
+use App\Models\StatusPergantian;
 
 class PengelolaController extends Controller
 {
@@ -158,17 +159,9 @@ class PengelolaController extends Controller
     {
         $dokumen = Dokumen::find($idDokumen);
 
-        $tipe      = $dokumen->tipeDokumen->nama_tipe;
-        $nomor     = $dokumen->nomor;
-        $tahun     = date('Y', strtotime($dokumen->tanggal_pengesahan));
-
-        $identitas = "{$tipe} Nomor {$nomor} Tahun {$tahun}";
-        $judul     = $dokumen->judul;
-        $deskripsi = "{$identitas} Tentang {$judul}";
-
         $data = [
             "idDokumen"        => $idDokumen,
-            "identitasDokumen" => $deskripsi,
+            "identitasDokumen" => identitasDokumen($dokumen),
             "berkasTerkait"    => $dokumen->berkas
         ];
 
@@ -204,17 +197,9 @@ class PengelolaController extends Controller
 
         if ($dokumenUtama == null) return view('page-not-found');
 
-        $tipe      = $dokumenUtama->tipeDokumen->nama_tipe;
-        $nomor     = $dokumenUtama->nomor;
-        $tahun     = date('Y', strtotime($dokumenUtama->tanggal_pengesahan));
-
-        $identitas = "{$tipe} Nomor {$nomor} Tahun {$tahun}";
-        $judul     = $dokumenUtama->judul;
-        $deskripsi = "{$identitas} Tentang {$judul}";
-
         $data = [
             "idDokumen"             => $idDokumen,
-            "identitasDokumenUtama" => $deskripsi
+            "identitasDokumenUtama" => identitasDokumen($dokumenUtama)
         ];
 
         $keyword   = $request->input('q');
