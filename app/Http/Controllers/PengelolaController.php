@@ -58,7 +58,14 @@ class PengelolaController extends Controller
 
     function dashboard()
     {
-        return view('admin.dashboard');
+        $data = [
+            "jumlahPerdes"     => TipeDokumen::where('singkatan_tipe', 'Perdes')->first()->dokumen->count(),
+            "jumlahPerkades"   => TipeDokumen::where('singkatan_tipe', 'Perkades')->first()->dokumen->count(),
+            "jumlahPermakades" => TipeDokumen::where('singkatan_tipe', 'Permakades')->first()->dokumen->count(),
+            "jumlahSKKades"    => TipeDokumen::where('singkatan_tipe', 'SK Kades')->first()->dokumen->count(),
+        ];
+
+        return view('admin.dashboard', $data);
     }
 
     function dokumen()
