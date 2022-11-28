@@ -11,6 +11,7 @@ use App\Models\StatusDokumen;
 use App\Models\Berkas;
 use App\Models\DokumenTerkait;
 use App\Models\StatusPergantian;
+use App\Models\DokumenPengganti;
 
 class PengelolaController extends Controller
 {
@@ -229,5 +230,59 @@ class PengelolaController extends Controller
         DokumenTerkait::upsert($data, ['id_dokumen_utama', 'id_dokumen_terkait']);
 
         return redirect()->route('admin.dokumen.detail', ['id' => $idDokumen]);
+    }
+
+    function aturPergantianDokumen(Request $request, $idDokumenPengganti)
+    {
+        $dokumenPengganti = Dokumen::find($idDokumenPengganti);
+
+        if ($dokumenPengganti == null) return view('page-not-found');
+
+        $data = [
+            "idDokumenPengganti" => $idDokumenPengganti,
+            "identitasDokumenPengganti" => identitasDokumen($dokumenPengganti),
+            "pilihanStatus" => StatusPergantian::all(),
+        ];
+
+        $keyword   = $request->input('q');
+
+        if (!empty($keyword)) {
+            $pilihanDokumenYangDiganti = Dokumen::where('judul', 'like', "%{$keyword}%")
+                ->where('id', '!=', $idDokumenPengganti)
+                ->orderBy('tanggal_pengesahan', 'desc')
+                ->get();
+
+            $data["kataKunci"]      = $keyword;
+            $data["pilihanDokumen"] = $pilihanDokumenYangDiganti;
+        }
+
+        return view('admin.dokumen.pengganti.tambah', $data);
+    }
+
+    function prosesPergantianDokumen(Request $request, $idDokumenPengganti)
+    {
+        $kodePergantian = $request->input('status');
+        $dokumenDiganti = $request->input('dokumen_diganti');
+        $data           = [];
+
+        foreach ($dokumenDiganti as $idDokumenDiganti) {
+            $data[] = [
+                'id_dokumen_pengganti' => $idDokumenPengganti,
+                'id_dokumen_diganti'   => $idDokumenDiganti,
+                'kode_pergantian'      => $kodePergantian
+            ];
+        }
+
+        DokumenPengganti::upsert($data, ['id_dokumen_pengganti', 'id_dokumen_diganti'], ['kode_pergantian']);
+
+        if ($kodePergantian != StatusPergantian::where('nama_pergantian', 'Mengubah')->first()->kode_pergantian) {
+            foreach ($dokumenDiganti as $idDokumenDiganti) {
+                $dok = Dokumen::find($idDokumenDiganti);
+                $dok->kode_status = StatusDokumen::where('status', 'Tidak berlaku')->first()->kode_status;
+                $dok->save();
+            }
+        }
+
+        return redirect()->route('admin.dokumen.detail', ['id' => $idDokumenPengganti]);
     }
 }

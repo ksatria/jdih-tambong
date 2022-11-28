@@ -30,6 +30,13 @@
             <td>:</td>
             <td><span
                     class="badge {{ $status == 'Berlaku' ? 'text-bg-success' : 'text-bg-danger' }}">{{ $status }}</span>
+
+                <x-dokumen.pengganti :menggantikanDokumen="$menggantikanDokumen" :digantikanOleh="$digantikanOleh" :halamanAdmin="$halamanAdmin" />
+
+                @if ($halamanAdmin)
+                    <p class="small"><a href="{{ route('admin.dokumen.pengganti.tambah', ['id' => $id]) }}">Atur
+                            pergantian dokumen</a></p>
+                @endif
             </td>
         </tr>
         <tr>

@@ -71,6 +71,11 @@ Route::controller(PengelolaController::class)->name('admin.')->group(function ()
                 Route::get('/dokumen-terkait/{id}', 'tambahDokumenTerkait')->name('tambah');
                 Route::post('/dokumen-terkait/{id}', 'prosesTambahDokumenTerkait')->name('tambah.proses');
             });
+
+            Route::name('pengganti.')->group(function () {
+                Route::get('/dokumen-pengganti/{id}', 'aturPergantianDokumen')->name('tambah');
+                Route::post('/dokumen-pengganti/{id}', 'prosesPergantianDokumen')->name('tambah.proses');
+            });
         });
 
         Route::name('berkas.')->group(function () {

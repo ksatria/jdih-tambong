@@ -107,4 +107,21 @@ class Dokumen extends Model
     {
         return $this->belongsToMany(Dokumen::class, 'dokumen_terkait', 'id_dokumen_terkait', 'id_dokumen_utama');
     }
+
+    /**
+     * Setiap dokumen dapat menggantikan/digantikan oleh dokumen lainnya
+     */
+    public function menggantikanDokumen()
+    {
+        return $this->belongsToMany(Dokumen::class, 'dokumen_pengganti', 'id_dokumen_pengganti', 'id_dokumen_diganti')
+            ->using(DokumenPengganti::class)
+            ->withPivot('kode_pergantian');
+    }
+
+    public function digantikanOleh()
+    {
+        return $this->belongsToMany(Dokumen::class, 'dokumen_pengganti', 'id_dokumen_diganti', 'id_dokumen_pengganti')
+            ->using(DokumenPengganti::class)
+            ->withPivot('kode_pergantian');
+    }
 }

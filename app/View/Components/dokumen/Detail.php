@@ -19,6 +19,8 @@ class Detail extends Component
     public $berkasTerkait;
     public $dokumenTerkait;
     public $dikaitkanDengan;
+    public $menggantikanDokumen;
+    public $digantikanOleh;
 
     /**
      * Create a new component instance.
@@ -39,6 +41,8 @@ class Detail extends Component
         $this->berkasTerkait   = $dokumen->berkas;
         $this->dokumenTerkait  = $dokumen->dokumenTerkait;
         $this->dikaitkanDengan = $dokumen->dikaitkanDengan;
+        $this->menggantikanDokumen = $dokumen->menggantikanDokumen;
+        $this->digantikanOleh = $dokumen->digantikanOleh;
     }
 
     /**

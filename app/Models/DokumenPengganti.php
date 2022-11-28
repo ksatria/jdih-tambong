@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class DokumenPengganti extends Model
+class DokumenPengganti extends Pivot
 {
     use HasFactory;
 
@@ -40,4 +40,12 @@ class DokumenPengganti extends Model
         'id_dokumen_diganti',
         'kode_pergantian'
     ];
+
+    /**
+     * Setiap pergantian dokumen memiliki satu status pergantian
+     */
+    public function statusPergantian()
+    {
+        return $this->belongsTo(StatusPergantian::class, 'kode_pergantian', 'kode_pergantian');
+    }
 }
