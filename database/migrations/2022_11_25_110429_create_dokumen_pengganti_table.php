@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('id_dokumen_pengganti');
             $table->bigInteger('id_dokumen_diganti');
             $table->char('kode_pergantian', 1);
+            $table->unique(['id_dokumen_pengganti', 'id_dokumen_diganti']);
         });
     }
 
