@@ -17,7 +17,7 @@
         <div class="alert alert-warning">Belum ada produk hukum yang disimpan ke dalam sistem</div>
     @else
         @foreach ($kumpulanDokumen as $dokumen)
-            <x-admin.dokumen-card :dokumen="$dokumen" />
+            <x-Admin.DokumenCard :dokumen="$dokumen" />
         @endforeach
 
         {{ $kumpulanDokumen->links() }}

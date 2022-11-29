@@ -9,5 +9,5 @@
         <div id="judul-dokumen" class="fs-4 fw-bold">{{ $judul }}</div>
     </h1>
 
-    <x-dokumen.detail :dokumen="$dokumen" />
+    <x-Dokumen.Detail :dokumen="$dokumen" />
 @endsection

@@ -5,7 +5,7 @@
 @section('konten-utama')
     <h1 class="display-6 fw-semibold my-5">Hasil Pencarian</h1>
 
-    <x-form-pencarian :keyword="$keyword" />
+    <x-FormPencarian :keyword="$keyword" />
 
     <p>Hasil pencarian untuk <strong><em>"{{ $keyword }}"</em></strong></p>
 
@@ -13,7 +13,7 @@
         <p><em>Tidak ditemukan dokumen untuk <strong>"{{ $keyword }}"</strong></em></p>
     @else
         @foreach ($hasil as $dokumen)
-            <x-dokumen.card :dokumen="$dokumen" />
+            <x-Dokumen.Card :dokumen="$dokumen" />
         @endforeach
 
         {{ $hasil->links() }}

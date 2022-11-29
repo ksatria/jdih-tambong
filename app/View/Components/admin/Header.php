@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\admin;
+namespace App\View\Components\Admin;
 
 use Illuminate\View\Component;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +26,6 @@ class Header extends Component
      */
     public function render()
     {
-        return view('components.admin.header');
+        return view('components.Admin.Header');
     }
 }

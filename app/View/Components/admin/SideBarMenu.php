@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\admin;
+namespace App\View\Components\Admin;
 
 use Illuminate\View\Component;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +32,6 @@ class SideBarMenu extends Component
      */
     public function render()
     {
-        return view('components.admin.side-bar-menu');
+        return view('components.Admin.SideBarMenu');
     }
 }

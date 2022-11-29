@@ -8,7 +8,7 @@
         Kabupaten Banyuwangi,
         Provinsi Jawa Timur</p>
 
-    <x-form-pencarian />
+    <x-FormPencarian />
 
     <section id="dokumen-terbaru">
         <h1 class="section-title fs-4">Produk Hukum Terbaru</h1>
@@ -17,7 +17,7 @@
             <p><em>Belum ada produk hukum yang dipublikasi</em></p>
         @else
             @foreach ($kumpulanDokumen as $dokumen)
-                <x-dokumen.card :dokumen="$dokumen" />
+                <x-Dokumen.Card :dokumen="$dokumen" />
             @endforeach
 
             <p class="text-center">

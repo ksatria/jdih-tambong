@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\dokumen;
+namespace App\View\Components\Dokumen;
 
 use Illuminate\View\Component;
 use App\Models\Dokumen;
@@ -52,6 +52,6 @@ class Detail extends Component
      */
     public function render()
     {
-        return view('components.dokumen.detail');
+        return view('components.Dokumen.Detail');
     }
 }

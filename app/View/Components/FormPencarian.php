@@ -24,6 +24,6 @@ class FormPencarian extends Component
      */
     public function render()
     {
-        return view('components.form-pencarian');
+        return view('components.FormPencarian');
     }
 }

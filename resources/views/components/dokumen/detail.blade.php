@@ -31,7 +31,7 @@
             <td><span
                     class="badge {{ $status == 'Berlaku' ? 'text-bg-success' : 'text-bg-danger' }}">{{ $status }}</span>
 
-                <x-dokumen.pengganti :menggantikanDokumen="$menggantikanDokumen" :digantikanOleh="$digantikanOleh" :halamanAdmin="$halamanAdmin" />
+                <x-Dokumen.pengganti :menggantikanDokumen="$menggantikanDokumen" :digantikanOleh="$digantikanOleh" :halamanAdmin="$halamanAdmin" />
 
                 @if ($halamanAdmin)
                     <p class="small"><a href="{{ route('admin.dokumen.pengganti.tambah', ['id' => $id]) }}">Atur
@@ -55,7 +55,7 @@
             <td>Produk hukum terkait</td>
             <td>:</td>
             <td>
-                <x-dokumen.terkait :dokumenTerkait="$dokumenTerkait" :dikaitkanDengan="$dikaitkanDengan" :halamanAdmin="$halamanAdmin" />
+                <x-Dokumen.terkait :dokumenTerkait="$dokumenTerkait" :dikaitkanDengan="$dikaitkanDengan" :halamanAdmin="$halamanAdmin" />
 
                 @if ($halamanAdmin)
                     <p class="small"><a href="{{ route('admin.dokumen.terkait.tambah', ['id' => $id]) }}">Tambahkan

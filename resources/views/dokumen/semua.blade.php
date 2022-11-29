@@ -6,13 +6,13 @@
 @section('konten-utama')
     <h1 class="display-6 fw-semibold my-5">{{ $judulHalaman }}</h1>
 
-    <x-form-pencarian />
+    <x-FormPencarian />
 
     @if (count($kumpulanDokumen) === 0)
         <p><em>Tidak ditemukan dokumen terkait</em></p>
     @else
         @foreach ($kumpulanDokumen as $dokumen)
-            <x-dokumen.card :dokumen="$dokumen" />
+            <x-Dokumen.Card :dokumen="$dokumen" />
         @endforeach
 
         {{ $kumpulanDokumen->links() }}

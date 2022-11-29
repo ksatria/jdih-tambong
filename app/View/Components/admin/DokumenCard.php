@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\admin;
+namespace App\View\Components\Admin;
 
 use Illuminate\View\Component;
 use App\Models\Dokumen;
@@ -47,6 +47,6 @@ class DokumenCard extends Component
      */
     public function render()
     {
-        return view('components.admin.dokumen-card');
+        return view('components.Admin.DokumenCard');
     }
 }

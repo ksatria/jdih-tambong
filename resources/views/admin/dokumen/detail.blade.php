@@ -9,7 +9,7 @@
 @endsection
 
 @section('konten-utama')
-    <x-dokumen.detail :dokumen="$dokumen" :halamanAdmin=true />
+    <x-Dokumen.Detail :dokumen="$dokumen" :halamanAdmin=true />
 
     <div class="my-3 border-top" id="informasi-tambahan">
         <h2 class="h6">Informasi Tambahan</h2>
