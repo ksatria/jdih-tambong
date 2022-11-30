@@ -6,7 +6,7 @@
 @section('konten-utama')
     <h1 class="display-6 fw-semibold my-5">{{ $judulHalaman }}</h1>
 
-    <x-FormPencarian />
+    <x-FormPencarian :action="route('cari')" />
 
     @if (count($kumpulanDokumen) === 0)
         <p><em>Tidak ditemukan dokumen terkait</em></p>
