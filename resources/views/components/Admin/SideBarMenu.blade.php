@@ -26,15 +26,9 @@
             </h6>
             <ul class="nav flex-column mb-2">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link {{ $active['admin.pengelola'] ?? '' }}" href="{{ route('admin.pengelola') }}">
                         <span data-feather="file-text" class="align-text-bottom"></span>
-                        Pengelola Dokumen
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span data-feather="file-text" class="align-text-bottom"></span>
-                        Tipe Dokumen
+                        Manajemen Pengelola
                     </a>
                 </li>
             </ul>

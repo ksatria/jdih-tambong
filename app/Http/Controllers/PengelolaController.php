@@ -292,4 +292,9 @@ class PengelolaController extends Controller
 
         return redirect()->route('admin.dokumen.detail', ['id' => $idDokumenPengganti]);
     }
+
+    function manajemenPengelola()
+    {
+        return view('admin.fitur-belum-siap');
+    }
 }

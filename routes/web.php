@@ -59,6 +59,7 @@ Route::controller(PengelolaController::class)->name('admin.')->group(function ()
     Route::middleware('auth')->group(function () {
         Route::get('/dashboard', 'dashboard')->name('dashboard');
         Route::get('/daftar-dokumen', 'dokumen')->name('dokumen');
+        Route::get('/pengelola', 'manajemenPengelola')->name('pengelola');
 
         Route::name('dokumen.')->group(function () {
             Route::get('/detail-dokumen/{id}', 'detailDokumen')->name('detail');

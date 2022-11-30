@@ -6,9 +6,9 @@
     </a>
     <div class="card-footer text-muted d-flex flex-row justify-content-between">
         <div><small>{{ $tanggal }}</small></div>
-        <div>
+        {{-- <div>
             <small><i class="bi-eye"></i> <span class="me-2">{{ $jumlahDilihat }}</span></small>
             <small><i class="bi-download"></i> <span>{{ $jumlahDidownload }}</span></small>
-        </div>
+        </div> --}}
     </div>
 </div>
