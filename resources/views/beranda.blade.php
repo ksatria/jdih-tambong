@@ -8,7 +8,7 @@
         Kabupaten Banyuwangi,
         Provinsi Jawa Timur</p>
 
-    <x-FormPencarian />
+    <x-FormPencarian :action="route('cari')" />
 
     <section id="dokumen-terbaru">
         <h1 class="section-title fs-4">Produk Hukum Terbaru</h1>
