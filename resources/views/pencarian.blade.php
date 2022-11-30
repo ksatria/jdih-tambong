@@ -5,7 +5,7 @@
 @section('konten-utama')
     <h1 class="display-6 fw-semibold my-5">Hasil Pencarian</h1>
 
-    <x-FormPencarian :keyword="$keyword" />
+    <x-FormPencarian :keyword="$keyword" :action="route('cari')" />
 
     <p>Hasil pencarian untuk <strong><em>"{{ $keyword }}"</em></strong></p>
 

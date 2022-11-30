@@ -15,6 +15,8 @@ use App\Models\DokumenPengganti;
 
 class PengelolaController extends Controller
 {
+    private $JUMLAH_DOKUMEN_PER_HALAMAN = 10;
+
     function prosesLogin(Request $request)
     {
         $credentials = $request->validate([
@@ -68,11 +70,23 @@ class PengelolaController extends Controller
         return view('admin.dashboard', $data);
     }
 
-    function dokumen()
+    function dokumen(Request $request)
     {
-        $dokumen = Dokumen::orderBy('tanggal_pengesahan', 'desc')->paginate(5);
+        if ($request->has('q')) {
+            $keyword = $request->input('q');
+
+            $dokumen = Dokumen::where('judul', 'like', "%{$keyword}%")
+                ->orderBy('tanggal_pengesahan', 'desc')
+                ->paginate($this->JUMLAH_DOKUMEN_PER_HALAMAN);
+        } else {
+            $keyword = '';
+
+            $dokumen = Dokumen::orderBy('tanggal_pengesahan', 'desc')
+                ->paginate($this->JUMLAH_DOKUMEN_PER_HALAMAN);
+        }
 
         $data = [
+            "keyword" => $keyword,
             "kumpulanDokumen" => $dokumen
         ];
 

@@ -7,14 +7,17 @@ use Illuminate\View\Component;
 class FormPencarian extends Component
 {
     public $keyword;
+    public $action;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($keyword = "")
+    public function __construct($keyword = "", $action = '')
     {
         $this->keyword = urldecode($keyword);
+        $this->action = $action;
     }
 
     /**

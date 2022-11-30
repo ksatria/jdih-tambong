@@ -10,8 +10,8 @@
                 </h2>
                 <small class="text-muted">
                     <i class="bi-calendar2-check"></i> <span class="me-2">{{ $tanggal }}</span>
-                    <i class="bi-eye"></i> <span class="me-2">{{ $jumlahDilihat }}</span>
-                    <i class="bi-download"></i> <span>{{ $jumlahDidownload }}</span>
+                    {{-- <i class="bi-eye"></i> <span class="me-2">{{ $jumlahDilihat }}</span>
+                    <i class="bi-download"></i> <span>{{ $jumlahDidownload }}</span> --}}
                 </small>
             </div>
         </div>
